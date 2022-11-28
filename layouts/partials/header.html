@@ -1,0 +1,23 @@
+<header>
+{{ with $.Site.Data.menu }} 
+<nav class="uk-navbar-container uk-container" uk-navbar>
+    <div class="uk-navbar-left">
+        {{ $logo := $.Site.Params.logo }}
+        {{ if $logo }}
+        <a class="uk-navbar-item uk-logo" href="{{ $.Site.BaseURL }}">
+            <img style="height: 3rem" src='{{ (resources.Get (print "img/" $logo)).RelPermalink }}'  alt="{{ $.Site.Title }}">
+        </a>
+        {{ end}}
+    </div>
+    <div class="uk-navbar-right">
+        <ul class="uk-navbar-nav">
+            {{ range . }}
+            <li>
+                <a href="{{ .href }}">{{ .title | safeHTML }}</a>
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+    </nav>
+{{ end }}
+</header>

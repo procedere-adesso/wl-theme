@@ -1,0 +1,16 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>{{ block "title" . }}
+        {{ .Site.Title }}
+        {{ end }}
+    </title>
+    {{ $sass := resources.Get "scss/site.scss" }}
+    {{ $style := $sass | resources.ExecuteAsTemplate "main.scss" . | resources.ToCSS }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+    {{ $js := resources.Get "uikit/dist/js/uikit.js" }}
+    <script src="{{ $js.RelPermalink }}"></script>
+    {{ $icons := resources.Get "uikit/dist/js/uikit-icons.js" }}
+    <script src="{{ $icons.RelPermalink }}"></script>
+</head>

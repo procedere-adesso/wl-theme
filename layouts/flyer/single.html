@@ -1,0 +1,14 @@
+{{ define "main" }}
+<main aria-role="main">
+    <header>
+        <h1>{{.Title}}</h1>
+        {{ with (.Parent.Resources.Get "hero.jpg") }}
+            {{ $img := .Resize "1000x Lanczos" }}
+            <img src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}" alt="{{ .Title }} icon">
+        {{ end }}
+    </header>
+    <div>
+        {{.Content}}
+    </div>
+</main>
+{{ end }}

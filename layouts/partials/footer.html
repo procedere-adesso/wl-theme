@@ -1,0 +1,26 @@
+<footer>
+    <div class="uk-container-expand wl-footer">
+        <div class="uk-container">
+            <div class="uk-flex wl-footer-items">
+                {{ range $.Site.Data.footer }} 
+                <div>
+                    {{ .column | markdownify }}
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        <img src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}' style="bottom: -2vw;" />
+    </div>
+    <div class="uk-container wl-affiliations">
+        <div class="uk-child-width-1-2@m" uk-grid>
+            <div>
+                <img  src='{{ (resources.Get "img/spf-logo.svg").RelPermalink }}' />
+            </div>
+            <div>
+                <img src='{{ (resources.Get "img/avenir-social-logo.svg").RelPermalink }}' />
+            </div>
+
+        </div>
+
+    </div>
+</footer>

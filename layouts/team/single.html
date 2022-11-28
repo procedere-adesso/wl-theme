@@ -1,0 +1,28 @@
+{{ define "main" }}
+<main aria-role="main">
+    <header>
+        {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
+            {{ $img := .Fill "200x200 Lanczos TopLeft" }}
+            <img src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}" alt="{{ .Title }} icon">
+        {{ end }}
+        <h1>{{.Title}}</h1>
+        <div>{{.Params.role}}</div>
+        <div>{{.Params.email}}</div>
+    </header>
+    <div>
+        {{.Content}}
+    </div>
+    {{ with .Params.edu }}
+    <h2>Qualifikationen</h2>
+    <ul>{{range .}}
+        <li>{{.}}</li>
+    {{end}}</ul>
+    {{ end }}
+    {{ with .NextInSection }}
+    <a href="{{ .RelPermalink }}">Next</a>
+    {{ end }}
+    {{ with .PrevInSection }}
+    <a href="{{ .RelPermalink }}">Prev</a>
+    {{ end }}
+</main>
+{{ end }}

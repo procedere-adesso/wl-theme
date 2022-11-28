@@ -1,0 +1,81 @@
+{{ define "main" }}
+<main aria-role="main">
+    {{ with ( .Resources.Get "hero.jpg") }}
+    <div class="uk-cover-container uk-height-large">
+        {{ $img := .Resize "1000x Lanczos" }}
+        <img uk-cover src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}" alt="{{ .Title }} icon">
+        <img src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}'
+            style="position: absolute; bottom: -2vw;" />
+    </div>
+    {{ end }}
+    <div class="uk-container">
+        <div class="uk-width-2-3 uk-card uk-background-default uk-padding uk-text-lead"
+            style="z-index: 10; margin-top: -10ex;">
+            {{.Content}}
+        </div>
+    </div>
+    <div class="uk-container uk-position-relative uk-position-z-index">
+        <div class="uk-child-width-1-2" uk-grid uk-height-match="target: .wl-intro">
+            {{ with .GetPage "flyer" }}
+            {{ range .Sections.ByWeight }}
+            <div>
+                <div class="wl-brush-box">
+                    <div class="wl-intro">
+                        {{ with (.Resources.Get "icon.png") }}
+                        {{ $img := .Resize "100x Lanczos" }}
+                        <img class="uk-float-right" src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
+                            alt="{{ .Title }} icon">
+                        {{ end }}
+                        <h2>{{ .Title }}</h2>
+                        <div>{{ .Params.intro }}</div>
+                    </div>
+                    <ul class="wl-link-list">
+                        {{ range .Pages.ByWeight }}
+                        <li><a href="{{ .RelPermalink }}">{{ .Title }}
+                            <span class="wl-inline-svg">{{
+                                (resources.Get "img/arrow-left.svg").Content | safeHTML }}</span>
+                        </a></li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+            {{ end }}
+            {{ end }}
+        </div>
+    </div>
+    <div class="uk-container-expand wl-about-team-homepage">
+        <img src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}' style="top: -2vw;" />
+        {{ with .GetPage "team" }}
+        <div class="uk-container ">
+            <div class="uk-grid-match" uk-grid>
+                <div class="uk-width-2-3 uk-text-large">
+                    {{ .Content }}
+                </div>
+                <div class="uk-margin-auto-top uk-width-1-3 uk-text-right">
+                    <a href="{{ .RelPermalink }}">{{ $.Site.Data.strings.gesamtes_team }} <span class="wl-inline-svg">{{
+                         (resources.Get "img/arrow-left.svg").Content | safeHTML }}</span></a>
+                </div>
+            </div>
+        </div>
+        {{ end }}
+        <img src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}' style="bottom: -2vw;" />
+    </div>
+    <div class="uk-container uk-position-relative uk-position-z-index">
+        {{ with .GetPage "team" }}
+        <div class="uk-child-width-1-3" uk-grid>
+            {{ range first 3 (shuffle .Pages) }}
+            <div class="wl-person-teaser">
+                {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
+                {{ $img := .Fill "200x200 Lanczos Top" }}
+                <img class="uk-border-circle" src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
+                    alt="{{ .Title }} icon" />
+                {{ end }}
+                <h3>{{.Title}}</h3>
+                <div>{{.Params.role}}</div>
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</main>
+{{ end }}
