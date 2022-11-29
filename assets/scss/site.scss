@@ -5,10 +5,10 @@
   font-style: normal;
   font-weight: 700;
   src: local(""),
-    url('{{ (resources.Get "fonts/magra-v14-latin-700.woff2").RelPermalink }}')
+    url('.{{ (resources.Get "fonts/magra-v14-latin-700.woff2").RelPermalink }}')
       format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url('{{ (resources.Get "fonts/magra-v14-latin-700.woff").RelPermalink }}"')
+      url('.{{ (resources.Get "fonts/magra-v14-latin-700.woff").RelPermalink }}')
       format("woff");
   /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
@@ -18,10 +18,10 @@
   font-style: normal;
   font-weight: 400;
   src: local(""),
-    url("{{ (resources.Get "fonts/magra-v14-latin-regular.woff2").RelPermalink }}")
+    url('.{{ (resources.Get "fonts/magra-v14-latin-regular.woff2").RelPermalink }}')
       format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("{{ (resources.Get "fonts/magra-v14-latin-regular.woff").RelPermalink }}")
+      url('.{{ (resources.Get "fonts/magra-v14-latin-regular.woff").RelPermalink }}')
       format("woff");
   /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
@@ -76,7 +76,7 @@ $navbar-nav-item-padding-horizontal: 1rem;
 }
 
 .wl-brush-box {
-  border-image-source: url('{{ (resources.Get "img/border-image-brush.svg").RelPermalink }}');
+  border-image-source: url('.{{ (resources.Get "img/border-image-brush.svg").RelPermalink }}');
   border-image-width: 15px;
   border-image-slice: 14 fill;
   border-style: solid;
