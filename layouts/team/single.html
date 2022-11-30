@@ -1,28 +1,50 @@
 {{ define "main" }}
 <main aria-role="main">
-    <header>
-        {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
-            {{ $img := .Fill "200x200 Lanczos TopLeft" }}
-            <img src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}" alt="{{ .Title }} icon">
-        {{ end }}
-        <h1>{{.Title}}</h1>
-        <div>{{.Params.role}}</div>
-        <div>{{.Params.email}}</div>
-    </header>
-    <div>
-        {{.Content}}
+    <div class="uk-container uk-margin-large-top">
+        <div uk-grid>
+
+            <div class="uk-width-1-6 uk-margin-auto-vertical">
+                {{ with .PrevInSection }}
+                <a href="{{ .RelPermalink }}">
+                    <span class="wl-inline-svg uk-text-large">
+                        {{(resources.Get "img/arrow-left.svg").Content | safeHTML }}
+                    </span>
+                </a>
+                {{ end }}
+            </div>
+
+            <div class="uk-width-1-3">
+                {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
+                {{ $img := .Fill "400x400 Lanczos TopLeft" }}
+                <img class="uk-border-circle" src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
+                    alt="{{ .Title }} icon">
+                {{ end }}
+            </div>
+
+            <div class="uk-width-1-3">
+                <h1>{{.Title}}</h1>
+                <div>{{.Params.role}}</div>
+                <div>{{.Params.email}}</div>
+                <div>{{.Content}}</div>
+                {{ with .Params.edu }}
+                <h2>Qualifikationen</h2>
+                <ul>{{range .}}
+                    <li>{{.}}</li>
+                    {{end}}
+                </ul>
+                {{ end }}
+            </div>
+
+            <div class="uk-width-1-6 uk-margin-auto-vertical">
+                {{ with .NextInSection }}
+                <a href="{{ .RelPermalink }}">
+                    <span class="wl-inline-svg uk-text-large">{{
+                        (resources.Get "img/arrow-right.svg").Content | safeHTML }}
+                    </span>
+                </a>
+                {{ end }}
+            </div>
+        </div>
     </div>
-    {{ with .Params.edu }}
-    <h2>Qualifikationen</h2>
-    <ul>{{range .}}
-        <li>{{.}}</li>
-    {{end}}</ul>
-    {{ end }}
-    {{ with .NextInSection }}
-    <a href="{{ .RelPermalink }}">Next</a>
-    {{ end }}
-    {{ with .PrevInSection }}
-    <a href="{{ .RelPermalink }}">Prev</a>
-    {{ end }}
 </main>
 {{ end }}

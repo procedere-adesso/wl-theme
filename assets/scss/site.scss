@@ -37,7 +37,7 @@ $base-body-color: $wl-black;
 $base-header-color: $wl-black;
 $global-link-color: $wl-blue;
 $global-font-family: Magra, sans-serif;
-
+$inverse-global-color: $wl-white;
 $navbar-nav-item-text-transform: initial;
 $navbar-background: $wl-white;
 $navbar-nav-item-color: $wl-black;
@@ -66,14 +66,18 @@ $navbar-nav-item-padding-horizontal: 1rem;
     border-width: 1px;
     border-color: $wl-black;
   }
-  a {
+}
+
+a {
     color: $wl-black;
     text-decoration: none;
     &:hover {
       color: $wl-blue;
+      svg path {
+        fill: $wl-blue;
+      }
     }
   }
-}
 
 .wl-brush-box {
   border-image-source: url('.{{ (resources.Get "img/border-image-brush.svg").RelPermalink }}');
@@ -94,23 +98,16 @@ $navbar-nav-item-padding-horizontal: 1rem;
     padding-bottom: 0.6rem;
     position: relative;
     a {
-        display: block;
-        position: relative;
-      &:hover {
-        color: $wl-blue;
-        svg {
-          fill: $wl-blue;
-        }
-      }
+      display: block;
+      position: relative;
       .wl-inline-svg {
         position: absolute;
         right: 0;
         svg {
-            height: 3ex;
-          }           
+          height: 3ex;
+        }
       }
     }
-    
   }
 }
 
@@ -122,6 +119,11 @@ $navbar-nav-item-padding-horizontal: 1rem;
   img {
     width: 100%;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.05s ease-in-out;
+  }
+  &:hover img {
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
+
   }
 }
 
@@ -153,8 +155,8 @@ $navbar-nav-item-padding-horizontal: 1rem;
 .wl-inline-svg {
   position: relative;
   svg {
-    padding-left: 0.2em;
     height: 2ex;
+    width: 2ex;
   }
 }
 
@@ -183,13 +185,13 @@ footer {
   }
 }
 
-.wl-person-list-hero {
+.wl-team-hero {
   margin-bottom: 2em;
-    > img {
-        width: 100%;
-    }
-    background-color: #1382bb;
-    color: $wl-white;
-    padding-top: 6em;
-    padding-bottom: 6em;
+  > img {
+    width: 100%;
+  }
+  background-color: #1382bb;
+  color: $wl-white;
+  padding-top: 6em;
+  padding-bottom: 6em;
 }
