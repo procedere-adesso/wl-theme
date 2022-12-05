@@ -42,6 +42,10 @@ $navbar-nav-item-text-transform: initial;
 $navbar-background: $wl-white;
 $navbar-nav-item-color: $wl-black;
 $navbar-nav-item-padding-horizontal: 1rem;
+$navbar-nav-item-font-size: 1rem;
+$navbar-dropdown-nav-font-size: 1rem;
+$navbar-dropdown-margin: -10px;
+$navbar-dropdown-viewport-margin: 0;
 
 // 2. Import default variables and available mixins.
 @import "../uikit/src/scss/variables-theme.scss";

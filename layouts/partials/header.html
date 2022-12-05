@@ -3,7 +3,7 @@
     <div class="uk-navbar-container uk-container-expand uk-box-shadow-small"
         uk-sticky="show-on-up: true; media: 640;animation: uk-animation-slide-top">
         <nav class="uk-container" uk-navbar>
-            <div class="uk-navbar-left">
+            {{/* <div class="uk-navbar-left">
                 {{ $logo := $.Site.Params.logo }}
                 {{ if $logo }}
                 <a class="uk-navbar-item uk-logo" href="{{ $.Site.BaseURL }}">
@@ -11,17 +11,71 @@
                         alt="{{ $.Site.Title }}">
                 </a>
                 {{ end}}
-            </div>
-            <div class="uk-navbar-right">
-                <ul class="uk-navbar-nav">
-                    {{ range . }}
+            </div> */}}
+            <div class="uk-navbar-left uk-flex-1">
+                <ul class="uk-navbar-nav uk-flex-1 uk-flex-between">
+                    {{ $logo := $.Site.Params.logo }}
+                    {{ if $logo }}
                     <li>
-                        <a href="{{ .href }}">{{ .title | safeHTML }}</a>
+                        <a class="uk-navbar-item uk-logo" href="{{ $.Site.BaseURL }}">
+                            <img style="height: 3rem" src='{{ (resources.Get (print "img/" $logo)).RelPermalink }}'
+                                alt="{{ $.Site.Title }}">
+                        </a>
+                    </li>
+                    {{ end}}
+                    {{ range . }}
+                    {{ $autosub := .autosub }}
+                    {{ if $autosub }}
+                    <li class="uk-parent uk-visible@m">
+                        <a class="uk-text-nowrap" href="#">{{ .title | safeHTML }}</a>
+                        <div class="uk-navbar-dropdown" uk-dropdown="animation: slide-top; animate-out: true">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                {{ range ($.GetPage $autosub).Pages.ByWeight }}
+                                <li>
+                                    <a href="{{ .RelPermalink }}" >{{ .Title }}</a>
+                                </li>
+                                <li class="uk-nav-divider"></li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                    </li>
+                    {{ else }}
+                    <li class="uk-visible@m">
+                        <a href="{{ .href }}" class="uk-text-nowrap">{{ .title | safeHTML }}</a>
                     </li>
                     {{ end }}
+                    {{ end }}
+                    <li class="uk-hidden@m">
+                        <a href="#wl-offcanvas-nav" uk-toggle>Menu <span uk-icon="icon: menu; ratio: 1.5"></span></a>
+                    </li>
                 </ul>
             </div>
         </nav>
+    </div>
+    <div id="wl-offcanvas-nav" uk-offcanvas="overlay: true; flip: true;">
+        <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+            <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
+                {{ range . }}
+                {{ $autosub := .autosub }}
+                {{ if $autosub }}
+                <li class="uk-parent">
+                    <a class="uk-text-nowrap" href="#">{{ .title | safeHTML }}</a>
+                    <ul class="uk-nav-sub">
+                        {{ range ($.GetPage $autosub).Pages.ByWeight }}
+                        <li>
+                            <a href="{{ .RelPermalink }}" >{{ .Title }}</a>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </li>
+                {{ else }}
+                <li>
+                    <a href="{{ .href }}" class="uk-text-nowrap">{{ .title | safeHTML }}</a>
+                </li>
+                {{ end }}
+                {{ end }}
+            </ul>
+        </div>
     </div>
     {{ end }}
 </header>
