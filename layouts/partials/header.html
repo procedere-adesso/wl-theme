@@ -1,4 +1,5 @@
 <header>
+    {{ $currentPage := . }}
     {{ with $.Site.Data.menu }}
     <div class="uk-navbar-container uk-container-expand uk-box-shadow-small"
         uk-sticky="show-on-up: true; media: 640;animation: uk-animation-slide-top">
@@ -30,9 +31,13 @@
                         <a class="uk-text-nowrap" href="#">{{ .title | safeHTML }}</a>
                         <div class="uk-navbar-dropdown" uk-dropdown="animation: slide-top; animate-out: true">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
-                                {{ range ($.GetPage $autosub).Pages.ByWeight }}
-                                <li>
-                                    <a href="{{ .RelPermalink }}" >{{ .Title }}</a>
+                            {{ range ($.GetPage $autosub).Pages.ByWeight }}
+                                {{ $active := newScratch }}
+                                {{ if eq ( $currentPage.RelPermalink ) ( .RelPermalink ) }}
+                                {{ $active.Set "class" "uk-active" }}
+                                {{ end }}
+                                <li class='{{ $active.Get "class" }}'>
+                                    <a  href="{{ .RelPermalink }}">{{ .Title }}</a>
                                 </li>
                                 <li class="uk-nav-divider"></li>
                                 {{ end }}
@@ -40,7 +45,11 @@
                         </div>
                     </li>
                     {{ else }}
-                    <li class="uk-visible@m">
+                    {{ $active := newScratch }}
+                    {{ if eq ( $currentPage.RelPermalink ) ( .RelPermalink ) }}
+                    {{ $active.Set "class" "uk-active" }}
+                    {{ end }}
+                    <li class='{{ $active.Get "class" }} uk-visible@m'>
                         <a href="{{ .href }}" class="uk-text-nowrap">{{ .title | safeHTML }}</a>
                     </li>
                     {{ end }}
@@ -62,14 +71,22 @@
                     <a class="uk-text-nowrap" href="#">{{ .title | safeHTML }}</a>
                     <ul class="uk-nav-sub">
                         {{ range ($.GetPage $autosub).Pages.ByWeight }}
-                        <li>
+                        {{ $active := newScratch }}
+                                {{ if eq ( $currentPage.RelPermalink ) ( .RelPermalink ) }}
+                                {{ $active.Set "class" "uk-active" }}
+                                {{ end }}
+                        <li class='{{ $active.Get "class" }}' >
                             <a href="{{ .RelPermalink }}" >{{ .Title }}</a>
                         </li>
                         {{ end }}
                     </ul>
                 </li>
                 {{ else }}
-                <li>
+                {{ $active := newScratch }}
+                                {{ if eq ( $currentPage.RelPermalink ) ( .RelPermalink ) }}
+                                {{ $active.Set "class" "uk-active" }}
+                                {{ end }}
+                <li class='{{ $active.Get "class" }}'>
                     <a href="{{ .href }}" class="uk-text-nowrap">{{ .title | safeHTML }}</a>
                 </li>
                 {{ end }}
