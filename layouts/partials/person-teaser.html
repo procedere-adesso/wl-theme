@@ -1,6 +1,6 @@
 <a href="{{ .RelPermalink }}" class="uk-link-reset"><div class="wl-person-teaser">
     {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
-    {{ $img := .Fill "200x200 Lanczos Top" }}
+    {{ $img := .Fill "600x600 Lanczos Top" }}
     <img class="uk-border-circle" src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
         alt="{{ .Title }} icon" />
     {{ end }}

@@ -1,14 +1,57 @@
 {{ define "main" }}
 <main aria-role="main">
-    <header>
-        <h1>{{.Title}}</h1>
-        {{ with (.Parent.Resources.Get "hero.jpg") }}
-            {{ $img := .Resize "1000x Lanczos" }}
-            <img src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}" alt="{{ .Title }} icon">
-        {{ end }}
-    </header>
-    <div>
-        {{.Content}}
+    {{ with ( .Parent.Resources.Get "hero.jpg") }}
+    <div class="uk-cover-container uk-height-large">
+        {{ $img := .Resize "1000x Lanczos" }}
+        <img uk-cover src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}" alt="{{ .Title }} icon">
+        <img src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}'
+            style="position: absolute; bottom: -2vw; width: 100%;" />
+    </div>
+    {{ end }}
+    <div class="uk-container uk-margin-large-top">
+        <div class="uk-flex uk-flex-wrap uk-flex-no-wrap@s">
+            <div class="uk-width-2-5@s uk-width-1-3@m uk-flex-last uk-flex-first@s">
+                <div class="wl-brush-box uk-margin-right">
+                    {{ if .Params.Contact }}
+                    <div class="uk-flex">
+                        {{ with .Site.GetPage ( print "/team/" .Params.Contact ".md" ) }}
+                        <div class="uk-width-3-4">
+                            <div><a href="{{ .RelPermalink }}" class="uk-link-reset">
+                                    {{ .Title }}</a></div>
+                            <div>{{ .Params.Phone }}</div>
+                            <div><a href="mailto:{{ .Params.EMail }}">{{ .Params.EMail }}</a></div>
+                        </div>
+                        <div class="uk-width-1-4">
+                            {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
+                            {{ $img := .Fill "300x300 Lanczos Top" }}
+                            <img class="uk-border-circle"
+                                src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
+                                alt="{{ .Title }} icon" />
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                    <ul class="wl-link-list wl-double-height">
+                        {{ range .Params.Downloads }}
+                        <li><a href="{{ .HRef }}">{{ .Title | safeHTML }}
+                                <span class="wl-inline-svg">{{
+                                    (resources.Get "img/arrow-download.svg").Content | safeHTML }}</span>
+                            </a></li>
+                        {{ end }}
+                        <li><a onclick="window.print();">{{ $.Site.Data.strings.seite_drucken | safeHTML }}<span
+                                    class="wl-inline-svg">{{
+                                    (resources.Get "img/print.svg").Content | safeHTML }}</span>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="uk-width-3-5@s uk-width-2-3@m uk-card uk-background-default uk-padding"
+                style="z-index: 10; margin-top: -10ex;">
+                <h1>{{.Title}}</h1>
+                <div class="uk-text-large">{{.Content | safeHTML}}</div>
+            </div>
+        </div>
     </div>
 </main>
 {{ end }}
