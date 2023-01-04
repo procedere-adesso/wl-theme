@@ -1,7 +1,7 @@
 {{ define "main" }}
 <main aria-role="main">
     {{ with ( .Parent.Resources.Get "hero.jpg") }}
-    <div class="uk-cover-container uk-height-large">
+    <div class="uk-cover-container wl-hero-height">
         {{ with .Resize "1000x Lanczos" }}
         <img uk-cover src="data:{{ .MediaType}};base64,{{ .Content | base64Encode }}" alt="{{ .Title }} icon">
         {{ end }}
