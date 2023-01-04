@@ -1,7 +1,7 @@
 {{ define "main" }}
 <main aria-role="main">
     {{ $page := . }}
-    <div class="uk-cover-container uk-height-large uk-light" tabindex="-1" uk-slideshow>
+    <div class="uk-cover-container uk-height-large uk-light" tabindex="-1" uk-slideshow="animation: fade; autoplay: true; ">
             <ul class="uk-slideshow-items">
                 {{ range .Params.HeroImages }}
                 {{ printf "%s" }}
