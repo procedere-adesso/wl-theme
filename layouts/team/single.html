@@ -16,7 +16,7 @@
                 <div class="uk-width-1-3@m uk-width-4-5">
                     {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
                     {{ $img := .Fill "400x400 Lanczos TopLeft" }}
-                    <img class="uk-border-circle" src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
+                    <img class="uk-border-circle uk-box-shadow-medium" src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
                         alt="{{ .Title }} icon">
                     {{ end }}
                 </div>
