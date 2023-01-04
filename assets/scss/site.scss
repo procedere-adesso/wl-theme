@@ -74,16 +74,15 @@ $navbar-dropdown-viewport-margin: 0;
 }
 
 a {
-    color: $wl-black;
+  color: $wl-black;
+  &:hover {
     text-decoration: none;
-    &:hover {
-      color: $wl-blue;
-      svg path {
-        fill: $wl-blue;
-      }
+    color: $wl-blue;
+    svg path {
+      fill: $wl-blue;
     }
   }
-
+}
 
 .wl-brush-box {
   border-image-source: url('.{{ (resources.Get "img/border-image-brush.svg").RelPermalink }}');
@@ -118,12 +117,66 @@ a {
   .wl-double-height li a .wl-inline-svg {
     top: 0.6rem;
     svg {
-                height: 4ex;
-                width: 4ex;
-                }
-            }
+      height: 4ex;
+      width: 4ex;
+    }
+  }
 }
+.wl-person-nav {
+    width: 10rem;
+    margin-top: 20vw;
+    @media (min-width: $breakpoint-small) {
+        margin-top: 10rem;
+    }
+}
+.wl-intro {
+  > div {
+    h2 {
+      color: $wl-blue;
+      margin-bottom: 0;
+      font-size: 1.4rem;
+    }
+    div.wl-icon {
+    text-align: right;
+      min-width: 80px;
+    }
+    margin-bottom: 2ex;
+    @media (min-width: $breakpoint-small) {
+      h2 {
+        font-size: 1.2rem;
+      }
+    }
+    @media (min-width: $breakpoint-medium) {
+      h2 {
+        font-size: 2rem;
+      }
+      div.wl-icon {
+        min-width: 150px;
+      }
+    }
+  }
+}
+.wl-team-pick-homepage {
+  a:last-child {
+    display: none;
+    @media (min-width: $breakpoint-small) {
+      display: block;
+    }
+  }
+}
+.wl-intro-block {
+  hyphens: auto;
+  font-size: 1.2rem;
+  padding: 0 2.4rem;
 
+  @media (min-width: $breakpoint-small) {
+    z-index: 10;
+    margin-top: -10ex;
+    > div p {
+      font-size: 1.7rem;
+    }
+  }
+}
 .wl-person-teaser {
   text-align: center;
   h3 {
@@ -136,7 +189,6 @@ a {
   }
   &:hover img {
     box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
-
   }
 }
 
@@ -144,24 +196,35 @@ a {
   background-color: rgba($wl-orange, 0.1);
   color: $wl-orange;
   margin-top: -8rem;
-  padding-top: 16rem;
-  padding-bottom: 16rem;
   margin-bottom: -8rem;
+  padding: 2rem;
+  padding-top: 10rem;
+  padding-bottom: 12rem;
   position: relative;
+  hyphens: auto;
+  @media (min-width: $breakpoint-small) {
+    padding: 0;
+    padding-top: 16rem;
+    padding-bottom: 16rem;
+  }
+  .uk-grid-match {
+    > div:first-child {
+      font-size: 1.2rem;
+      @media (min-width: $breakpoint-small) {
+        font-size: 1.5rem;
+      }
+    }
+    > div:last-child {
+      margin-top: 2rem;
+      @media (min-width: $breakpoint-small) {
+        margin-top: auto;
+      }
+    }
+  }
+  font-size: 1rem;
   > img {
     position: absolute;
     width: 100%;
-  }
-
-  a {
-    color: $wl-black;
-    text-decoration: none;
-    &:hover {
-      color: $wl-blue;
-      svg {
-        fill: $wl-blue;
-      }
-    }
   }
 }
 
@@ -181,8 +244,20 @@ footer {
     margin-top: 4em;
     padding-top: 3em;
     padding-bottom: 4em;
+    a {
+      color: $wl-white;
+      text-decoration: underline;
+      &:hover {
+        color: $wl-blue;
+      }
+    }
     .wl-footer-items {
-      gap: 8ex;
+      flex-direction: column;
+      gap: 2.5em;
+      @media (min-width: $breakpoint-small) {
+        flex-direction: row;
+        gap: 8ex;
+      }
     }
     > img {
       position: absolute;
@@ -203,8 +278,13 @@ footer {
   > img {
     width: 100%;
   }
-  background-color: #1382bb;
+  background-color: $wl-blue;
   color: $wl-white;
   padding-top: 6em;
   padding-bottom: 6em;
+}
+
+.wl-hero-height {
+  min-height: 350px;
+  max-height: 550px;
 }
