@@ -3,7 +3,7 @@
         <div class="uk-container">
             <div class="uk-flex wl-footer-items">
                 {{ range $.Site.Data.footer }} 
-                <div>
+                <div class="uk-width-expand">
                     {{ .column | markdownify }}
                 </div>
                 {{ end }}
@@ -12,11 +12,11 @@
         <img src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}' style="bottom: -2vw;" />
     </div>
     <div class="uk-container wl-affiliations">
-        <div class="uk-child-width-1-2@m" uk-grid>
-            <div>
-                <img  src='{{ (resources.Get "img/spf-logo.svg").RelPermalink }}' />
+        <div class="uk-grid-large" uk-grid>
+            <div class="uk-width-3-5 uk-width-2-5@s">
+                <img src='{{ (resources.Get "img/spf-logo.svg").RelPermalink }}' />
             </div>
-            <div>
+            <div class="uk-width-4-5 uk-width-1-2@s">
                 <img src='{{ (resources.Get "img/avenir-social-logo.svg").RelPermalink }}' />
             </div>
 
