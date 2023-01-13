@@ -1,7 +1,7 @@
 {{ define "main" }}
 <main aria-role="main">
     <div class="uk-container uk-margin-large-top">
-        <div class="uk-flex uk-grid-large">
+        <div class="uk-flex uk-grid-large wl-person">
             <div class="wl-person-nav">
                 {{ with .PrevInSection }}
                 <a href="{{ .RelPermalink }}">
@@ -22,12 +22,12 @@
                 </div>
 
                 <div class="uk-width-2-3@m uk-width-1-1">
-                    <h1>{{.Title}}</h1>
-                    <div>{{.Params.role}}</div>
-                    <div>{{.Params.email}}</div>
-                    <div>{{.Content}}</div>
+                    <h3>{{.Title}}</h3>
+                    <div class="wl-role">{{.Params.role}}</div>
+                    <div class="wl-email">E-Mail <a href="mailto:{{.Params.email}}">{{.Params.email}}</a></div>
+                    <div class="wl-note">{{.Content}}</div>
                     {{ with .Params.edu }}
-                    <h2>Qualifikationen</h2>
+                    <p>Qualifikationen</p>
                     <ul>{{range .}}
                         <li>{{.}}</li>
                         {{end}}

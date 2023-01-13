@@ -2,7 +2,7 @@
     <div class="wl-person-teaser">
         {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
         {{ $img := .Fill "600x600 Lanczos Top" }}
-        <div class="uk-padding-large uk-padding-remove-vertical uk-padding-small@s">
+        <div class="">
             <img class="uk-border-circle" src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
                 alt="{{ .Title }} icon" />
             {{ end }}

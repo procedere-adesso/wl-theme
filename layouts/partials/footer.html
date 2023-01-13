@@ -1,23 +1,23 @@
 <footer id="footer">
     <div class="uk-container-expand wl-footer">
-        <div class="uk-container">
-            <div class="uk-flex wl-footer-items">
+        <div class="uk-container uk-padding-large">
+            <div class="uk-child-width-1-4@m uk-child-width-1-2@s uk-child-width-1-1" uk-grid>
                 {{ range $.Site.Data.footer }} 
-                <div class="uk-width-expand">
+                <div>
                     {{ .column | markdownify }}
                 </div>
                 {{ end }}
             </div>
         </div>
-        <img src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}' style="bottom: -2vw;" />
+        <img src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}' style="bottom: -1vw;" />
     </div>
     <div class="uk-container wl-affiliations">
         <div class="uk-grid-large" uk-grid>
             <div class="uk-width-3-5 uk-width-2-5@s">
-                <img src='{{ (resources.Get "img/spf-logo.svg").RelPermalink }}' />
+                <a href="https://www.spf-fachverband.ch"><img src='{{ (resources.Get "img/spf-logo.svg").RelPermalink }}' /></a>
             </div>
             <div class="uk-width-4-5 uk-width-1-2@s">
-                <img src='{{ (resources.Get "img/avenir-social-logo.svg").RelPermalink }}' />
+                <a href="https://www.avenirsocial.ch"><img src='{{ (resources.Get "img/avenir-social-logo.svg").RelPermalink }}' /></a>
             </div>
 
         </div>

@@ -32,20 +32,32 @@ $wl-orange: #f0871b;
 $wl-blue: #1382bb;
 $wl-black: #000;
 $wl-white: #fff;
-
+$global-2xlarge-font-size: 1.875rem; // H1
+$global-xlarge-font-size: 1.625rem; // H2
+$global-large-font-size: 1.312rem; // H3
+$global-medium-font-size: 1.125rem; // H4
+$base-heading-color: $wl-black;
 $base-body-color: $wl-black;
-$base-header-color: $wl-black;
 $global-link-color: $wl-blue;
 $global-font-family: Magra, sans-serif;
+$global-accent-color: $wl-orange;
+$offcanvas-bar-width: 320px;
 $inverse-global-color: $wl-white;
 $navbar-nav-item-text-transform: initial;
 $navbar-background: $wl-white;
 $navbar-nav-item-color: $wl-black;
+$navbar-nav-item-hover-color: $wl-blue;
+$navbar-nav-item-active-color: $wl-orange;
 $navbar-nav-item-padding-horizontal: 1rem;
 $navbar-nav-item-font-size: 1rem;
 $navbar-dropdown-nav-font-size: 1rem;
-$navbar-dropdown-margin: -10px;
+$navbar-dropdown-shift-margin: -10px;
 $navbar-dropdown-viewport-margin: 0;
+$navbar-dropdown-nav-item-color: $wl-black;
+$navbar-dropdown-nav-item-active-color: $wl-orange;
+$navbar-dropdown-nav-item-hover-color: $wl-blue;
+//$offcanvas-bar-color-mode: light;
+//$offcanvas-bar-background: $wl-white;
 
 // 2. Import default variables and available mixins.
 @import "../uikit/src/scss/variables-theme.scss";
@@ -57,7 +69,7 @@ $navbar-dropdown-viewport-margin: 0;
 // }
 
 // 4. Import UIkit.
-@import "../uikit/src/scss/uikit-theme.scss";
+@import "../uikit/src/scss/uikit.scss";
 
 .wl-link-list {
   list-style: none;
@@ -70,13 +82,16 @@ $navbar-dropdown-viewport-margin: 0;
     border-bottom-style: solid;
     border-width: 1px;
     border-color: $wl-black;
+    a {
+      text-decoration: none;
+    }
   }
 }
 
-a {
+body a {
   color: $wl-black;
+  text-decoration: underline;
   &:hover {
-    text-decoration: none;
     color: $wl-blue;
     svg path {
       fill: $wl-blue;
@@ -122,36 +137,45 @@ a {
     }
   }
 }
+
+a.wl-arrow-link {
+  color: $wl-black;
+  text-decoration: none;
+}
+
 .wl-person-nav {
-    width: 10rem;
-    margin-top: 20vw;
-    @media (min-width: $breakpoint-small) {
-        margin-top: 10rem;
-    }
+  width: 10rem;
+  margin-top: 20vw;
+  @media (min-width: $breakpoint-small) {
+    margin-top: 10rem;
+  }
 }
 .wl-intro {
   > div {
-    h2 {
+    h1 {
       color: $wl-blue;
       margin-bottom: 0;
-      font-size: 1.4rem;
+      font-size: 1.1rem;
     }
     div.wl-icon {
-    text-align: right;
-      min-width: 80px;
+      text-align: right;
+      width: 55px;
     }
     margin-bottom: 2ex;
     @media (min-width: $breakpoint-small) {
-      h2 {
-        font-size: 1.2rem;
+      h1 {
+        font-size: $global-large-font-size;
+      }
+      div.wl-icon {
+        width: 70px;
       }
     }
     @media (min-width: $breakpoint-medium) {
-      h2 {
-        font-size: 2rem;
+      h1 {
+        font-size: $global-2xlarge-font-size;
       }
       div.wl-icon {
-        min-width: 150px;
+        width: 150px;
       }
     }
   }
@@ -166,29 +190,32 @@ a {
 }
 .wl-intro-block {
   hyphens: auto;
-  font-size: 1.2rem;
   padding: 0 2.4rem;
-
+  margin-top: -10ex;
+  z-index: 10;
+  div > p {
+    font-size: $global-large-font-size;
+  }
   @media (min-width: $breakpoint-small) {
-    z-index: 10;
-    margin-top: -10ex;
-    > div p {
-      font-size: 1.7rem;
+    div > p {
+      font-size: $global-xlarge-font-size;
     }
   }
 }
 .wl-person-teaser {
   text-align: center;
   h3 {
-    margin-bottom: 0;
+    margin-bottom: 0ex;
+    margin-top: 4ex;
+    font-size: 1rem;
+    @media (min-width: $breakpoint-small) {
+      font-size: $global-medium-font-size;
+    }
   }
   img {
     width: 100%;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.05s ease-in-out;
-  }
-  &:hover img {
-    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -196,14 +223,19 @@ a {
   background-color: rgba($wl-orange, 0.1);
   color: $wl-orange;
   margin-top: -8rem;
-  margin-bottom: -8rem;
+  margin-bottom: -13vh;
   padding-top: 10rem;
-  padding-bottom: 12rem;
+  padding-bottom: 10rem;
   position: relative;
   hyphens: auto;
   @media (min-width: $breakpoint-small) {
     padding-top: 16rem;
-    padding-bottom: 16rem;
+    padding-bottom: 14rem;
+  }
+  @media (min-width: $breakpoint-medium) {
+    padding-top: 16rem;
+    padding-bottom: 14rem;
+    margin-bottom: -13rem;
   }
   .uk-grid-match {
     > div:first-child {
@@ -240,21 +272,12 @@ footer {
     color: $wl-white;
     position: relative;
     margin-top: 4em;
-    padding-top: 3em;
-    padding-bottom: 4em;
+    padding-top: 1em;
+    padding-bottom: 1em;
     a {
       color: $wl-white;
-      text-decoration: underline;
       &:hover {
-        color: $wl-blue;
-      }
-    }
-    .wl-footer-items {
-      flex-direction: column;
-      gap: 2.5em;
-      @media (min-width: $breakpoint-small) {
-        flex-direction: row;
-        gap: 8ex;
+        color: $wl-white;
       }
     }
     > img {
@@ -273,16 +296,71 @@ footer {
 
 .wl-team-hero {
   margin-bottom: 2em;
+  font-size: $global-large-font-size;
+  @media (min-width: $breakpoint-small) {
+    font-size: $global-xlarge-font-size;
+  }
+  hyphens: auto;
   > img {
     width: 100%;
   }
   background-color: $wl-blue;
   color: $wl-white;
-  padding-top: 6em;
-  padding-bottom: 6em;
+  padding-top: 3ex;
+  padding-bottom: 3ex;
 }
 
 .wl-hero-height {
   min-height: 350px;
   max-height: 550px;
+}
+
+.wl-flyer-body {
+  hyphens: auto;
+  p:first-child {
+    font-size: $global-xlarge-font-size;
+    margin-top: 0;
+  }
+}
+
+.wl-person {
+  h3 {
+    margin-bottom: 1ex;
+  }
+  .wl-note {
+    font-size: $global-large-font-size;
+    margin-top: 2ex;
+    margin-bottom: 2ex;
+    hyphens: auto;
+  }
+}
+
+// color settings are necessary because the offcanvas menu
+// seems to be invered and I can not find the reseaon for this.
+.wl-mobile-menu {
+  .uk-offcanvas-bar {
+    background-color: $wl-white;
+    a {
+      color: $wl-black;
+    }
+    .uk-nav-default {
+      .uk-nav-divider {
+        border-top-color: $wl-black;
+      }
+
+      > li {
+        margin-top: 2ex;
+        > a {
+        color: $wl-blue;
+      }}
+      .uk-nav-sub {
+        > li > a {
+          color: $wl-black;
+        }
+      }
+    }
+    li.uk-active > a {
+      color: $wl-orange;
+    }
+  }
 }
