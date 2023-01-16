@@ -296,23 +296,26 @@ footer {
 
 .wl-team-hero {
   margin-bottom: 2em;
+  padding-top: 3ex;
+  padding-bottom: 3ex;
   font-size: $global-large-font-size;
+  hyphens: auto;
+  background-color: $wl-blue;
+  color: $wl-white;
   @media (min-width: $breakpoint-small) {
     font-size: $global-xlarge-font-size;
   }
-  hyphens: auto;
   > img {
     width: 100%;
   }
-  background-color: $wl-blue;
-  color: $wl-white;
-  padding-top: 3ex;
-  padding-bottom: 3ex;
 }
 
 .wl-hero-height {
-  min-height: 350px;
-  max-height: 550px;
+  
+  @media (min-width: $breakpoint-small) {
+    min-height: 350px;
+    max-height: 550px;
+  }
 }
 
 .wl-flyer-body {
