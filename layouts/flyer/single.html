@@ -16,8 +16,9 @@
                     {{ if .Params.Contact }}
                     <div class="uk-flex">
                         {{ with .Site.GetPage ( print "/team/" .Params.Contact ".md" ) }}
+                        {{ $link := .RelPermalink }}
                         <div class="uk-width-3-4">
-                            <div><a href="{{ .RelPermalink }}">
+                            <div><a href="{{ $link }}">
                                     {{ .Title }}</a></div>
                             <div>{{ .Params.Phone }}</div>
                             <div><a href="mailto:{{ .Params.EMail }}">{{ .Params.EMail }}</a></div>
@@ -25,7 +26,7 @@
                         <div class="uk-width-1-4">
                             {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
                             {{ $img := .Fill "300x300 Lanczos Top" }}
-                            <a href="{{ .RelPermalink }}" class="uk-link-reset">
+                            <a href="{{ $link }}" class="uk-link-reset">
                             <img class="uk-border-circle uk-box-shadow-medium"
                                 src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
                                 alt="{{ .Title }} icon" /></a>
