@@ -109,9 +109,11 @@ body a {
   h2 {
     margin-top: 0;
     hyphens: manual;
+    -webkit-hyphens: manual;
   }
   div {
     hyphens: auto;
+    -webkit-hyphens: auto;
   }
   li {
     padding-top: 0.6rem;
@@ -155,7 +157,7 @@ a.wl-arrow-link {
     h1 {
       color: $wl-blue;
       margin-bottom: 0;
-      font-size: 1.1rem;
+      font-size: $global-large-font-size;
     }
     div.wl-icon {
       text-align: right;
@@ -163,9 +165,6 @@ a.wl-arrow-link {
     }
     margin-bottom: 2ex;
     @media (min-width: $breakpoint-small) {
-      h1 {
-        font-size: $global-large-font-size;
-      }
       div.wl-icon {
         width: 70px;
       }
@@ -175,7 +174,7 @@ a.wl-arrow-link {
         font-size: $global-2xlarge-font-size;
       }
       div.wl-icon {
-        width: 150px;
+        width: 100px;
       }
     }
   }
@@ -190,8 +189,10 @@ a.wl-arrow-link {
 }
 .wl-intro-block {
   hyphens: auto;
-  padding: 0 2.4rem;
+  -webkit-hyphens: auto;
+
   margin-top: -10ex;
+  margin-bottom: 5ex;
   z-index: 10;
   div > p {
     font-size: $global-large-font-size;
@@ -209,7 +210,7 @@ a.wl-arrow-link {
     margin-top: 4ex;
     font-size: 1rem;
     @media (min-width: $breakpoint-small) {
-      font-size: $global-medium-font-size;
+      font-size: $global-large-font-size;
     }
   }
   img {
@@ -228,20 +229,21 @@ a.wl-arrow-link {
   padding-bottom: 10rem;
   position: relative;
   hyphens: auto;
+  -webkit-hyphens: auto;
+
   @media (min-width: $breakpoint-small) {
-    padding-top: 16rem;
+    padding-top: 9rem;
     padding-bottom: 14rem;
   }
   @media (min-width: $breakpoint-medium) {
-    padding-top: 16rem;
     padding-bottom: 14rem;
     margin-bottom: -13rem;
   }
   .uk-grid-match {
     > div:first-child {
-      font-size: 1.2rem;
+      font-size: $global-large-font-size;
       @media (min-width: $breakpoint-small) {
-        font-size: 1.5rem;
+        font-size: $global-xlarge-font-size;
       }
     }
     > div:last-child {
@@ -274,10 +276,19 @@ footer {
     margin-top: 4em;
     padding-top: 1em;
     padding-bottom: 1em;
+    @media print {
+      background-color: $wl-orange !important;
+      div {
+        color: $wl-white !important;
+      }
+      a {
+        color: $wl-white !important;
+      }
+    }
     a {
       color: $wl-white;
       &:hover {
-        color: $wl-white;
+        color: $wl-blue;
       }
     }
     > img {
@@ -300,6 +311,7 @@ footer {
   padding-bottom: 3ex;
   font-size: $global-large-font-size;
   hyphens: auto;
+  -webkit-hyphens: auto;
   background-color: $wl-blue;
   color: $wl-white;
   @media (min-width: $breakpoint-small) {
@@ -311,18 +323,36 @@ footer {
 }
 
 .wl-hero-height {
-  
-  @media (min-width: $breakpoint-small) {
+  max-height: 250px;
+  @media (min-width: $breakpoint-medium) {
+    max-height: 400px;
+  }
+  @media (min-width: $breakpoint-medium) {
     min-height: 350px;
     max-height: 550px;
   }
 }
 
 .wl-flyer-body {
-  hyphens: auto;
-  p:first-child {
+  @media print {
+    background-color: $wl-white !important;
+  }
+  h1 {
     font-size: $global-xlarge-font-size;
-    margin-top: 0;
+    @media (min-width: $breakpoint-small) {
+      font-size: $global-2xlarge-font-size;
+    }
+  }
+  > div {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    p:first-child {
+      font-size: $global-large-font-size;
+      margin-top: 0;
+      @media (min-width: $breakpoint-small) {
+        font-size: $global-xlarge-font-size;
+      }
+    }
   }
 }
 
@@ -335,6 +365,7 @@ footer {
     margin-top: 2ex;
     margin-bottom: 2ex;
     hyphens: auto;
+    -webkit-hyphens: auto;
   }
 }
 
@@ -354,8 +385,9 @@ footer {
       > li {
         margin-top: 2ex;
         > a {
-        color: $wl-blue;
-      }}
+          color: $wl-blue;
+        }
+      }
       .uk-nav-sub {
         > li > a {
           color: $wl-black;

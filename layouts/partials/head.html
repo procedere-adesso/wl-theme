@@ -13,4 +13,9 @@
     <script src="{{ $js.RelPermalink }}"></script>
     {{ $icons := resources.Get "uikit/dist/js/uikit-icons.js" }}
     <script src="{{ $icons.RelPermalink }}"></script>
+    {{ $favicon := $.Site.Params.favicon }}
+    {{ if $favicon }}        
+    <link rel="icon" href='{{ (resources.Get (print "img/" $favicon)).RelPermalink }}'>
+    {{ end }}
+
 </head>
