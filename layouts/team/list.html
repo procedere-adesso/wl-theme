@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main aria-role="main">
+<main role="main">
     <div class="uk-container-expand wl-team-hero uk-position-relative">
         <div class="uk-container uk-light uk-padding-large">
             <div ckass="uk-child-width-1-1" uk-grid>
@@ -8,7 +8,7 @@
                 </div>
             </div>
         </div>
-        <img src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}'
+        <img alt="brush stroke" src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}'
             style="position: absolute; bottom: -1vw; width: 100%;" />
     </div>
     <div class="uk-container uk-position-relative uk-position-z-index">

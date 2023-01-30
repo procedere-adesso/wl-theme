@@ -1,6 +1,6 @@
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <title>{{ block "title" . }}
         {{ .Site.Title }}
@@ -10,9 +10,9 @@
     {{ $style := $sass | resources.ExecuteAsTemplate "main.scss" . | resources.ToCSS }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}">
     {{ $js := resources.Get "uikit/dist/js/uikit.js" }}
-    <script src="{{ $js.RelPermalink }}"></script>
+    <script src="{{ $js.RelPermalink }}" defer></script>
     {{ $icons := resources.Get "uikit/dist/js/uikit-icons.js" }}
-    <script src="{{ $icons.RelPermalink }}"></script>
+    <script src="{{ $icons.RelPermalink }}" defer></script>
     {{ $favicon := $.Site.Params.favicon }}
     {{ if $favicon }}        
     <link rel="icon" href='{{ (resources.Get (print "img/" $favicon)).RelPermalink }}'>

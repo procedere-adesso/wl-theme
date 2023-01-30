@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main aria-role="main">
+<main role="main">
     {{/*  HERO SLIDER ######################################################## */}}
     <div class="uk-cover-container uk-position-relative uk-light" tabindex="-1"
         uk-slideshow="animation: fade; autoplay: true; min-height: 350; max-height: 550">
@@ -13,12 +13,12 @@
             {{ end }}
             {{ end }}
         </ul>
-        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+        <a aria-label="zurück" class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
             uk-slideshow-item="previous"></a>
-        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+        <a aria-label="vorwärts" class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
             uk-slideshow-item="next"></a>
 
-        <img src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}'
+        <img alt="brush stroke" src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}'
             style="position: absolute; bottom: -1vw; width: 100%;" />
     </div>
     {{/*  INTRO TEXT  ####################################################### */}}
@@ -75,7 +75,7 @@
     </div>
     {{/*  ABOUT THE TEAM ###################################################### */}}
     <div class="uk-container-expand wl-about-team-homepage">
-        <img src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}' style="top: -1vw;width: 100%;" />
+        <img alt="brush stroke" src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}' style="top: -1vw;width: 100%;" />
         {{ with .GetPage "team" }}
         <div class="uk-container uk-padding">
             <div class="uk-grid-match" uk-grid>
@@ -90,7 +90,7 @@
             </div>
         </div>
         {{ end }}
-        <img src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}' style="bottom: -1vw;width: 100%;" />
+        <img alt="brush stroke" src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}' style="bottom: -1vw;width: 100%;" />
     </div>
     {{/* THE TEAM ############################################################# */}}
     <div class="wl-team-pick-homepage uk-container uk-padding uk-position-relative uk-position-z-index">
