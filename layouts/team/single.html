@@ -15,7 +15,7 @@
 
                 <div class="uk-width-1-3@m uk-width-4-5">
                     {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
-                    {{ $img := .Fill "434x496 Lanczos Top" }}
+                    {{ $img := .Fill "434x496 Lanczos webp Top" }}
                     <img class="uk-box-shadow-medium" src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
                         alt="{{ .Title }} icon">
                     {{ end }}

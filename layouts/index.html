@@ -6,7 +6,7 @@
         <ul class="uk-slideshow-items">
             {{ range (.GetPage "flyer").Sections.ByWeight }}
             {{ with (.Resources.Get "hero.jpg") }}
-            {{ $img := .Resize "1500x Lanczos" }}
+            {{ $img := .Resize "1500x Lanczos webp" }}
             <li>
                 <img src="data:{{ .MediaType }};base64,{{ $img.Content | base64Encode }}" alt="hero slide" uk-cover>
             </li>
