@@ -16,7 +16,7 @@
                 <div class="uk-width-1-3@m uk-width-4-5">
                     {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
                     {{ $img := .Fill "400x400 Lanczos TopLeft" }}
-                    <img class="uk-border-circle uk-box-shadow-medium" src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
+                    <img class="uk-box-shadow-medium" src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
                         alt="{{ .Title }} icon">
                     {{ end }}
                 </div>
@@ -25,7 +25,20 @@
                     <h3>{{.Title}}</h3>
                     <div class="wl-role">{{.Params.role}}</div>
                     <div class="wl-email">E-Mail <a href="mailto:{{.Params.email}}">{{.Params.email}}</a></div>
+                    {{ if .Params.phone }}
+                    <div class="wl-phone">Tel <a href="tel:{{.Params.phone}}">{{.Params.phone}}</a></div>
+                    {{ end }}
+                    {{ if .Params.mobile }}
+                    <div class="wl-mobile">Mobil <a href="tel:{{.Params.mobile}}">{{.Params.mobile}}</a></div>
+                    {{ end }}
                     <div class="wl-note">{{.Content}}</div>
+                    {{ with .Params.core }}
+                    <p>Kernkompetenzen</p>
+                    <ul>{{range .}}
+                        <li>{{.}}</li>
+                        {{end}}
+                    </ul>
+                    {{ end }}
                     {{ with .Params.edu }}
                     <p>Qualifikationen</p>
                     <ul>{{range .}}

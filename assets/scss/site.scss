@@ -368,6 +368,10 @@ footer {
     hyphens: auto;
     -webkit-hyphens: auto;
   }
+  ul > li {
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+  }
 }
 
 // color settings are necessary because the offcanvas menu
