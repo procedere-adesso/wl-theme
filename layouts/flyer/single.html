@@ -25,9 +25,9 @@
                         </div>
                         <div class="uk-width-1-4">
                             {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
-                            {{ $img := .Fill "300x300 Lanczos webp Top" }}
+                            {{ $img := .Fill "140x160 Lanczos webp Top" }}
                             <a href="{{ $link }}" class="uk-link-reset">
-                            <img class="uk-border-circle uk-box-shadow-medium"
+                            <img class="uk-box-shadow-medium"
                                 src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
                                 alt="{{ .Title }} icon" /></a>
                             {{ end }}
