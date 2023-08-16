@@ -5,7 +5,7 @@
     {{ with $hero }}
     <div class="uk-cover-container uk-height-large wl-hero-height">
         {{ with .Resize "1000x Lanczos" }}
-        <img uk-cover src="data:{{ .MediaType}};base64,{{ .Content | base64Encode }}" alt="{{ .Title }} icon">
+        <img uk-cover src="data:{{ $img.MediaType}};base64,{{ .Content | base64Encode }}" alt="{{ .Title }} icon">
         {{ end }}
         <img alt="brush stroke" src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}'
             style="position: absolute; bottom: -1vw; width: 100%;" />
