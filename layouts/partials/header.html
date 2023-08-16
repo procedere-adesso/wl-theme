@@ -21,6 +21,7 @@
                     {{/* MAIN MENU  ################################ */}}
                     {{ range . }}
                         {{ $autosub := .autosub }}
+                        {{ $sub := .sub }}
                         {{ if $autosub }}
                             {{ $active := newScratch }}
                             {{ if eq ( $currentPage.CurrentSection ) ( $.GetPage $autosub ) }}
@@ -45,6 +46,32 @@
                                     </ul>
                                 </div>
                             </li>
+                        {{ else if $sub }}
+                            {{ $active := newScratch }}
+                            {{ range $sub }}
+                                {{ $page := $.GetPage . }}
+                                {{ if eq ( $currentPage.RelPermalink ) ( $page.RelPermalink ) }}
+                                    {{ $active.Set "class" "uk-active" }}
+                                {{ end }}
+                            {{ end }}
+                            <li class='uk-parent {{ $active.Get "class" }} uk-visible@m'>
+                            <a class='uk-text-nowrap ' href="#">{{ .title | safeHTML }}</a>
+                            <div class="uk-navbar-dropdown"
+                            uk-dropdown="animation: slide-top; animate-out: true; offset: -10px;">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                {{ range $sub }}
+                                {{ $page := $.GetPage . }}
+                                {{ $active := newScratch }}
+                                {{ if eq ( $currentPage.RelPermalink ) ( $page.RelPermalink ) }}
+                                {{ $active.Set "class" "uk-active" }}
+                                {{ end }}
+                                <li class='{{ $active.Get "class" }}'>
+                                    <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
+                                </li>
+                                <li class="uk-nav-divider"></li>
+                                {{ end }}
+                            </ul>
+                        </div>
                         {{ else }}
                             {{ $active := newScratch }}
                             {{ if eq ( $currentPage.CurrentSection ) ( $.GetPage .href ) }}
@@ -72,26 +99,51 @@
             <ul class="uk-nav uk-nav-default">
                 {{ range . }}
                 {{ $autosub := .autosub }}
+                {{ $sub := .sub }}
                 {{ if $autosub }}
-                {{ $active := newScratch }}
-                {{ if eq ( $currentPage.CurrentSection ) ( $.GetPage $autosub ) }}
-                    {{ $active.Set "class" "uk-active" }}
-                {{ end }}
-                <li class="uk-parent {{ $active.Get "class" }}">
-                    <a class="uk-text-nowrap">{{ .mobile_title }}</a>
-                    <div class="uk-nav-divider"></div>
-                    <ul class="uk-nav-sub">
-                        {{ range ($.GetPage $autosub).Pages.ByWeight }}
-                        {{ $active := newScratch }}
-                        {{ if eq ( $currentPage.RelPermalink ) ( .RelPermalink ) }}
+                    {{ $active := newScratch }}
+                    {{ if eq ( $currentPage.CurrentSection ) ( $.GetPage $autosub ) }}
                         {{ $active.Set "class" "uk-active" }}
+                    {{ end }}
+                    <li class="uk-parent {{ $active.Get "class" }}">
+                        <a class="uk-text-nowrap">{{ .mobile_title }}</a>
+                        <div class="uk-nav-divider"></div>
+                        <ul class="uk-nav-sub">
+                            {{ range ($.GetPage $autosub).Pages.ByWeight }}
+                            {{ $active := newScratch }}
+                            {{ if eq ( $currentPage.RelPermalink ) ( .RelPermalink ) }}
+                            {{ $active.Set "class" "uk-active" }}
+                            {{ end }}
+                            <li class='{{ $active.Get "class" }}'>
+                                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                            </li>
+                            {{ end }}
+                        </ul>
+                    </li>
+                {{ else if $sub }}
+                    {{ $active := newScratch }}
+                    {{ range $sub }}
+                        {{ $page := $.GetPage . }}
+                        {{ if eq ( $currentPage.RelPermalink ) ( $page.RelPermalink ) }}
+                            {{ $active.Set "class" "uk-active" }}
                         {{ end }}
-                        <li class='{{ $active.Get "class" }}'>
-                            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                        </li>
-                        {{ end }}
-                    </ul>
-                </li>
+                    {{ end }}
+                    <li class="uk-parent {{ $active.Get "class" }}">
+                        <a class="uk-text-nowrap">{{ .mobile_title }}</a>
+                        <div class="uk-nav-divider"></div>
+                        <ul class="uk-nav-sub">
+                            {{ range $sub }}
+                            {{ $active := newScratch }}
+                            {{ $page := $.GetPage . }}
+                            {{ if eq ( $currentPage.RelPermalink ) ( $page.RelPermalink ) }}
+                            {{ $active.Set "class" "uk-active" }}
+                            {{ end }}
+                            <li class='{{ $active.Get "class" }}'>
+                                <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
+                            </li>
+                            {{ end }}
+                        </ul>
+                    </li>
                 {{ else }}
                 {{ $active := newScratch }}
                 {{ if eq ( $currentPage.CurrentSection ) ( $.GetPage .href ) }}

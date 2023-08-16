@@ -1,6 +1,8 @@
 {{ define "main" }}
 <main role="main">
-    {{ with ( .Parent.Resources.Get "hero.jpg") }}
+    {{ $hero := .Parent.Resources.Get "hero.jpg" }}
+    {{ if $hero }}
+    {{ with $hero }}
     <div class="uk-cover-container uk-height-large wl-hero-height">
         {{ with .Resize "1000x Lanczos" }}
         <img uk-cover src="data:{{ .MediaType}};base64,{{ .Content | base64Encode }}" alt="{{ .Title }} icon">
@@ -8,6 +10,9 @@
         <img alt="brush stroke" src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}'
             style="position: absolute; bottom: -1vw; width: 100%;" />
     </div>
+    {{ end }}
+    {{ else }}
+    <div class="uk-margin-large-top"></div>
     {{ end }}
     <div class="uk-container">
         <div class="uk-flex uk-flex-wrap uk-flex-no-wrap@s">
@@ -20,8 +25,9 @@
                         <div class="uk-width-3-4">
                             <div><a href="{{ $link }}">
                                     {{ .Title }}</a></div>
+                            <div>{{ .Params.Role }}</div>
                             <div>{{ .Params.Phone }}</div>
-                            <div><a href="mailto:{{ .Params.EMail }}">{{ .Params.EMail }}</a></div>
+                            <div><a href="mailto:{{ .Params.EMail }}">E-Mail</a></div>
                         </div>
                         <div class="uk-width-1-4">
                             {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
