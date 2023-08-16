@@ -10,9 +10,9 @@
     {{ $style := $sass | resources.ExecuteAsTemplate "main.scss" . | resources.ToCSS }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}">
     {{ $js := resources.Get "uikit/dist/js/uikit.js" }}
-    <script src="{{ $js.RelPermalink }}" defer></script>
+    <script src="{{ $js.RelPermalink }}"></script>
     {{ $icons := resources.Get "uikit/dist/js/uikit-icons.js" }}
-    <script src="{{ $icons.RelPermalink }}" defer></script>
+    <script src="{{ $icons.RelPermalink }}"></script>
     {{ $favicon := $.Site.Params.favicon }}
     {{ if $favicon }}        
     <link rel="icon" href='{{ (resources.Get (print "img/" $favicon)).RelPermalink }}'>
