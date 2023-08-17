@@ -11,7 +11,17 @@
     </div>
     {{ end }}
     {{ else }}
-    <div class="uk-margin-large-top"></div>
+    <div class="uk-container-expand wl-team-hero uk-height-medium uk-position-relative">
+     {{- /* <div class="uk-container uk-light uk-padding-large">
+            <div ckass="uk-child-width-1-1" uk-grid>
+                <div>
+                   
+                </div>
+            </div>
+        </div>  */ -}}
+        <img alt="brush stroke" src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}'
+            style="position: absolute; bottom: -1vw; width: 100%;" />
+    </div>
     {{ end }}
     <div class="uk-container">
         <div class="uk-flex uk-flex-wrap uk-flex-no-wrap@s">
