@@ -323,6 +323,10 @@ footer {
   }
 }
 
+.wl-blue-hero {
+  background-color: $wl-blue;
+}
+
 .wl-hero-height {
   max-height: 250px;
   @media (min-width: $breakpoint-medium) {
