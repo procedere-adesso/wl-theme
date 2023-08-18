@@ -1,7 +1,7 @@
 <a href="{{ .RelPermalink }}" class="uk-link-reset">
     <div class="wl-person-teaser">
         {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
-        {{ $img := .Fill "373x426 Lanczos webp Top" }}
+        {{ $img := .Fill "746x852 webp" }}
         <div class="">
             <img class="" src="data:{{ $img.MediaType}};base64,{{ $img.Content | base64Encode }}"
                 alt="{{ .Title }} icon" />

@@ -4,7 +4,7 @@
     {{ if $hero }}
     {{ with $hero }}
     <div class="uk-cover-container uk-height-large wl-hero-height">
-        {{ $img := .Resize "1000x Webp Lanczos" }}
+        {{ $img := .Resize "1500x webp photo" }}
         <img uk-cover src="data:{{ $img.MediaType}};base64,{{ $img.Content | base64Encode }}" alt="{{ .Title }} icon">
         <img alt="brush stroke" src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}'
             style="position: absolute; bottom: -1vw; width: 100%;" />
@@ -40,7 +40,7 @@
                         </div>
                         <div class="uk-width-1-4">
                             {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
-                            {{ $img := .Fill "140x160 Lanczos webp Top" }}
+                            {{ $img := .Fill "160x180 webp" }}
                             <a href="{{ $link }}" class="uk-link-reset">
                             <img class="uk-box-shadow-medium"
                                 src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
