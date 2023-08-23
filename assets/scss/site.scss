@@ -267,15 +267,15 @@ a.wl-arrow-link {
 }
 
 .wl-sidebyside {
-    display: grid;
-    gap: 1rem;
-    @media (min-width: $breakpoint-medium) {
+  display: grid;
+  gap: 1rem;
+  @media (min-width: $breakpoint-medium) {
     grid-template-columns: 1fr 1fr;
     > iframe {
-        width: 100%;
-        height: 100%;
+      width: 100%;
+      height: 100%;
     }
-}
+  }
 }
 
 footer {
@@ -420,7 +420,7 @@ footer {
 }
 
 @media print {
-    .wl-no-print {
-        display: none;
-    }
+  .wl-no-print {
+    display: none;
+  }
 }
