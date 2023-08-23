@@ -42,7 +42,7 @@
                             {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
                             {{ $img := .Fill "160x180 webp" }}
                             <a href="{{ $link }}" class="uk-link-reset">
-                            <img class="uk-box-shadow-medium"
+                            <img
                                 src="data:{{ .MediaType}};base64,{{ $img.Content | base64Encode }}"
                                 alt="{{ .Title }} icon" /></a>
                             {{ end }}

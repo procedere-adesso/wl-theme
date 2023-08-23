@@ -16,7 +16,7 @@
                 <div class="uk-width-1-3@m uk-width-4-5">
                     {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
                     {{ $img := .Fill "482x552 webp" }}
-                    <img class="uk-box-shadow-medium" src="data:{{ $img.MediaType}};base64,{{ $img.Content | base64Encode }}"
+                    <img src="data:{{ $img.MediaType}};base64,{{ $img.Content | base64Encode }}"
                         alt="{{ .Title }} icon">
                     {{ end }}
                 </div>
