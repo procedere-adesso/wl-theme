@@ -269,7 +269,7 @@ a.wl-arrow-link {
 .wl-sidebyside {
     display: grid;
     gap: 1rem;
-    @media (min-width: $breakpoint-small) {
+    @media (min-width: $breakpoint-medium) {
     grid-template-columns: 1fr 1fr;
     > iframe {
         width: 100%;
