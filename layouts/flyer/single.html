@@ -12,13 +12,14 @@
     {{ end }}
     {{ else }}
     <div class="uk-container-expand wl-blue-hero uk-height-large wl-hero-height uk-position-relative">
-     {{- /* <div class="uk-container uk-light uk-padding-large">
-            <div ckass="uk-child-width-1-1" uk-grid>
-                <div>
-                   
+      <div class="uk-container uk-light uk-padding-large">
+         <div ckass="uk-child-width-1-1 uk-flex-center" uk-grid>
+                <div class="uk-visible@s uk-text-large">
+                    <div>{{ .Title | safeHTML }}</div>
+                   {{ .Params.intro | markdownify | safeHTML}}
                 </div>
             </div>
-        </div>  */ -}}
+        </div>  
         <img alt="brush stroke" src='{{ (resources.Get "img/brush-stroke.svg").RelPermalink }}'
             style="position: absolute; bottom: -1vw; width: 100%;" />
     </div>
@@ -66,7 +67,14 @@
             </div>
             <div class="uk-width-2-3@m uk-card uk-background-default uk-padding wl-flyer-body"
                 style="z-index: 10; margin-top: -10ex;">
-                <h1>{{.Title}}</h1>
+                {{ if $hero }}
+                  <h1>{{.Title}}</h1>
+                {{ else }}
+                    <div class="uk-hidden@s">
+                        <h1>{{ .Title | safeHTML }}</h1>
+                        <p>{{ .Params.intro }}</p>
+                    </div>
+                {{ end }}
                 <div>{{.Content | safeHTML}}</div>
             </div>
         </div>

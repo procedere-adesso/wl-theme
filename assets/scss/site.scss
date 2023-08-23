@@ -266,6 +266,18 @@ a.wl-arrow-link {
   }
 }
 
+.wl-sidebyside {
+    display: grid;
+    gap: 1rem;
+    @media (min-width: $breakpoint-small) {
+    grid-template-columns: 1fr 1fr;
+    > iframe {
+        width: 100%;
+        height: 100%;
+    }
+}
+}
+
 footer {
   page-break-inside: avoid;
   .wl-footer {
