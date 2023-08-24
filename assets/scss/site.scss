@@ -335,6 +335,10 @@ footer {
 
 .wl-blue-hero {
   background-color: $wl-blue;
+  font-size: $global-large-font-size;
+  @media (min-width: $breakpoint-small) {
+    font-size: $global-xlarge-font-size;
+  }
 }
 
 .wl-hero-height {
