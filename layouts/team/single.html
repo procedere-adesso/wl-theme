@@ -2,8 +2,9 @@
 <main role="main">
     <div class="uk-container uk-margin-large-top">
         <div class="uk-flex uk-flex-no-wrap wl-person">
+            {{ $pages := where site.RegularPages "Section" .Section }}
             <div class="wl-person-nav">
-                {{ with .PrevInSection }}
+                {{ with ($pages.ByParam "sort").Next . }}
                 <a href="{{ .RelPermalink }}">
                     <span class="wl-inline-svg uk-text-large">
                         {{(resources.Get "img/arrow-left.svg").Content | safeHTML }}
@@ -48,7 +49,7 @@
                 </div>
             </div>
             <div class="wl-person-nav uk-text-right">
-                {{ with .NextInSection }}
+                {{ with ($pages.ByParam "sort").Prev . }}
                 <a href="{{ .RelPermalink }}">
                     <span class="wl-inline-svg uk-text-large">{{
                         (resources.Get "img/arrow-right.svg").Content | safeHTML }}
