@@ -15,7 +15,10 @@
       <div class="uk-container uk-light uk-padding-large">
          <div ckass="uk-child-width-1-1 uk-flex-center" uk-grid>
                 <div class="uk-visible@m">
+                    {{ if .Params.noTitle}}
+                    {{ else }}
                     <div>{{ .Title | safeHTML }}</div>
+                    {{ end }}
                    {{ .Params.intro | markdownify | safeHTML}}
                 </div>
             </div>
@@ -71,7 +74,10 @@
                   <h1>{{.Title}}</h1>
                 {{ else }}
                     <div class="uk-hidden@m">
+                        {{ if .Params.noTitle}}
+                        {{ else }}
                         <h1>{{ .Title | safeHTML }}</h1>
+                        {{ end }}
                         <p>{{ .Params.intro }}</p>
                     </div>
                 {{ end }}
