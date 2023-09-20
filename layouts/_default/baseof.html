@@ -7,5 +7,11 @@
         {{- block "main" . }}{{- end }}
         </div>
         {{- partial "footer.html" . -}}
+    <script>
+        // make sure all external links open a new window
+        Array.from(document.links)
+            .filter(link => link.hostname != window.location.hostname)
+            .forEach(link => link.target = '_blank');
+    </script>
     </body>
 </html>

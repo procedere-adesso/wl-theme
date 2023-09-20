@@ -56,7 +56,7 @@
                     {{ end }}
                     <ul class="wl-no-print wl-link-list wl-double-height">
                         {{ range .Params.Downloads }}
-                        <li><a href="{{ .HRef }}">{{ .Title | safeHTML }}
+                        <li><a href="{{ .HRef }}" target="_blank">{{ .Title | safeHTML }}
                                 <span class="wl-inline-svg">{{
                                     (resources.Get "img/arrow-download.svg").Content | safeHTML }}</span>
                             </a></li>
