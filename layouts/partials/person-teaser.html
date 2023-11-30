@@ -3,9 +3,9 @@
         {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
         {{ $img := .Fill "746x852 webp" }}
         <div class="">
-            <img class="" src="data:{{ $img.MediaType}};base64,{{ $img.Content | base64Encode }}"
-                alt="{{ .Title }} icon" />
-        </div>
+            <img class="" src="{{ $img.RelPermalink }}"
+                alt="{{ .Title }} icon" /> 
+            </div>
         {{ end }}
         <h3>{{.Title}}</h3>
         <div>{{.Params.role}}</div>

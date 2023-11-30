@@ -95,13 +95,54 @@
     {{/* THE TEAM ############################################################# */}}
     <div class="wl-team-pick-homepage uk-container uk-padding uk-position-relative uk-position-z-index">
         {{ with .GetPage "team" }}
-        <div class="uk-child-width-1-3@s uk-child-width-1-2" uk-grid>
-            {{ range first 3 (shuffle .Pages) }}
-            {{- partial "person-teaser.html" . -}}
-            {{ end }}
-
-        </div>
+        <script>
+        let staff = [];
+        let pers;
+        //{{ range .Pages }}
+        pers = {
+            "name": "{{ .Title }}",
+            "role": "{{ .Params.role }}",
+            "link": "{{ .RelPermalink }}"
+        };
+        //   {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
+        //      {{ $img := .Fill "746x852 webp" }}
+        pers.img = "{{ $img.RelPermalink }}";
+        staff.push(pers);
+        //  {{ end }}
+        //{{ end }}
+        </script>
         {{ end }}
+        <div class="uk-child-width-1-3@s uk-child-width-1-2" uk-grid>
+        <script>
+            let shuffle = (array) => {
+                let currentIndex = array.length, temporaryValue, randomIndex;
+
+                while (0 !== currentIndex) {
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex -= 1;
+
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
+
+                return array;
+            }
+            document.write(shuffle(staff).slice(0, 3).map((person) => {
+                return `
+                    <a href="${person.link}" class="uk-link-reset">
+                        <div class="wl-person-teaser">
+                            <div class="">
+                                <img class="" src="${person.img}" alt="${person.name} icon" />
+                            </div>
+                            <h3>${person.name}</h3>
+                            <div>${person.role}</div>
+                        </div>
+                    </a>
+                `
+            }).join(''));
+        </script>
+        </div>
     </div>    
 </main>
 {{ end }}
