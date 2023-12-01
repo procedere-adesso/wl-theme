@@ -145,13 +145,6 @@ a.wl-arrow-link {
   text-decoration: none;
 }
 
-.wl-person-nav {
-  width: 10rem;
-  margin-top: 20vw;
-  @media (min-width: $breakpoint-small) {
-    margin-top: 10rem;
-  }
-}
 .wl-intro {
   > div {
     h1 {
@@ -376,19 +369,63 @@ footer {
 }
 
 .wl-person {
-  h3 {
-    margin-bottom: 1ex;
+//   > div {
+//     border: 1px solid #ccc;
+//   }
+  display: flex;
+  flex-wrap: wrap;
+  .wl-person-nav {
+    flex: none;
+    width: 2rem;
+    margin-top: 30%;
+    @media (max-width: $breakpoint-small) {
+      margin-top: 25vw;
+    }
+    &:last-child {
+      text-align: right;
+    }
   }
-  .wl-note {
-    font-size: $global-large-font-size;
-    margin-top: 2ex;
-    margin-bottom: 2ex;
-    hyphens: auto;
-    -webkit-hyphens: auto;
+  .wl-person-pic {
+    flex: 2;
+    margin-right: 2em;
+    margin-left: 2em;
+    text-align: right;
+    @media (max-width: $breakpoint-small) {
+      margin-left: 2em;
+      margin-right: 2em;
+      text-align: center;
+    }
+    img {
+      width: 100%;
+      max-width: 18em;
+    }
   }
-  ul > li {
-    margin-top: 1ex;
-    margin-bottom: 1ex;
+  .wl-person-info {
+    flex: 4;
+    margin-right: 2em;
+    @media (max-width: $breakpoint-small) {
+      margin-top: 2rem;
+      margin-left: 0;
+        margin-right: 0;
+      order: 5;
+      flex: 100%;
+    }
+
+    h3 {
+      margin-bottom: 1ex;
+    }
+    .wl-note {
+      font-size: $global-large-font-size;
+      margin-top: 2ex;
+      margin-bottom: 2ex;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+
+      ul > li {
+        margin-top: 1ex;
+        margin-bottom: 1ex;
+      }
+    }
   }
 }
 

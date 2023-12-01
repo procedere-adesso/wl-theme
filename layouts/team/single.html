@@ -1,7 +1,7 @@
 {{ define "main" }}
 <main role="main">
     <div class="uk-container uk-margin-large-top">
-        <div class="uk-flex uk-flex-no-wrap wl-person">
+        <div class="wl-person">
             {{ $pages := where site.RegularPages "Section" .Section }}
             <div class="wl-person-nav">
                 {{ with ($pages.ByParam "sort").Next . }}
@@ -12,44 +12,41 @@
                 </a>
                 {{ end }}
             </div>
-            <div class="uk-flex  uk-flex-center uk-grid-large" uk-grid>
-                <div class="uk-width-1-3@m uk-width-4-5">
-                    {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
-                    {{ $img := .Fill "482x552 webp" }}
-                    <img src="data:{{ $img.MediaType}};base64,{{ $img.Content | base64Encode }}"
-                        alt="{{ .Title }} icon">
-                    {{ end }}
-                </div>
-
-                <div class="uk-width-2-3@m uk-width-1-1">
-                    <h3>{{.Title}}</h3>
-                    <div class="wl-role">{{.Params.role}}</div>
-                    <div class="wl-email">E-Mail <a href="mailto:{{.Params.email}}">{{.Params.email}}</a></div>
-                    {{ if .Params.phone }}
-                    <div class="wl-phone">Tel <a href="tel:{{.Params.phone}}">{{.Params.phone}}</a></div>
-                    {{ end }}
-                    {{ if .Params.mobile }}
-                    <div class="wl-mobile">Mobil <a href="tel:{{.Params.mobile}}">{{.Params.mobile}}</a></div>
-                    {{ end }}
-                    <div class="wl-note">{{.Content}}</div>
-                    {{ with .Params.core }}
-                    <p>Kernkompetenzen</p>
-                    <ul>{{range .}}
-                        <li>{{.}}</li>
-                        {{end}}
-                    </ul>
-                    {{ end }}
-                    {{ with .Params.edu }}
-                    <p>Qualifikationen</p>
-                    <ul>{{range .}}
-                        <li>{{.}}</li>
-                        {{end}}
-                    </ul>
-                    {{ end }}
-                    <p><a href="..">Zurück zu den Mitarbeitenden</a></p>
-                </div>
+            <div class="wl-person-pic">
+                {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
+                {{ $img := .Fill "482x552 webp" }}
+                <img src="data:{{ $img.MediaType}};base64,{{ $img.Content | base64Encode }}" alt="{{ .Title }} icon">
+                {{ end }}
             </div>
-            <div class="wl-person-nav uk-text-right">
+            <div class="wl-person-info">
+                <h3>{{.Title}}</h3>
+                <div class="wl-role">{{.Params.role}}</div>
+                <div class="wl-email">E-Mail <a href="mailto:{{.Params.email}}">{{.Params.email}}</a></div>
+                {{ if .Params.phone }}
+                <div class="wl-phone">Tel <a href="tel:{{.Params.phone}}">{{.Params.phone}}</a></div>
+                {{ end }}
+                {{ if .Params.mobile }}
+                <div class="wl-mobile">Mobil <a href="tel:{{.Params.mobile}}">{{.Params.mobile}}</a></div>
+                {{ end }}
+                <div class="wl-note">{{.Content}}</div>
+                {{ with .Params.core }}
+                <p>Kernkompetenzen</p>
+                <ul>{{range .}}
+                    <li>{{.}}</li>
+                    {{end}}
+                </ul>
+                {{ end }}
+                {{ with .Params.edu }}
+                <p>Qualifikationen</p>
+                <ul>{{range .}}
+                    <li>{{.}}</li>
+                    {{end}}
+                </ul>
+                {{ end }}
+                <p><a href="..">Zurück zu den Mitarbeitenden</a></p>
+            </div>
+
+            <div class="wl-person-nav">
                 {{ with ($pages.ByParam "sort").Prev . }}
                 <a href="{{ .RelPermalink }}">
                     <span class="wl-inline-svg uk-text-large">{{
@@ -59,6 +56,7 @@
                 {{ end }}
             </div>
         </div>
+    </div>
     </div>
 </main>
 {{ end }}
