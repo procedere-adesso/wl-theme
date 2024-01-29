@@ -6,9 +6,14 @@
         {{ .Site.Title }}
         {{ end }}
     </title>
-    {{ $sass := resources.Get "scss/site.scss" }}
-    {{ $style := $sass | resources.ExecuteAsTemplate "main.scss" . | resources.ToCSS }}
-    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+    {{ $opts := dict
+        "transpiler" "libsass"
+        "vars" site.Params.styles
+        "enableSourceMap" (not hugo.IsProduction) 
+    }}
+    {{ with resources.Get "scss/site.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS $opts | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
     {{ $js := resources.Get "uikit/dist/js/uikit.js" }}
     <script src="{{ $js.RelPermalink }}"></script>
     {{ $icons := resources.Get "uikit/dist/js/uikit-icons.js" }}

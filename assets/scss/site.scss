@@ -28,10 +28,9 @@
 
 // 1. Your custom variables and variable overwrites.
 
-$wl-orange: #f0871b;
-$wl-blue: #1382bb;
-$wl-black: #000;
-$wl-white: #fff;
+@import "hugo:vars";
+
+
 $global-2xlarge-font-size: 1.875rem; // H1
 $global-xlarge-font-size: 1.625rem; // H2
 $global-large-font-size: 1.312rem; // H3
@@ -275,7 +274,7 @@ footer {
   page-break-inside: avoid;
   .wl-footer {
     background-color: $wl-orange;
-    color: $wl-white;
+    color: $wl-footer-color;
     position: relative;
     margin-top: 4em;
     padding-top: 1em;
@@ -283,14 +282,14 @@ footer {
     @media print {
       background-color: $wl-orange !important;
       div {
-        color: $wl-white !important;
+        color: $wl-footer-color !important;
       }
       a {
-        color: $wl-white !important;
+        color: $wl-footer-color !important;
       }
     }
     a {
-      color: $wl-white;
+      color: $wl-footer-color;
       &:hover {
         color: $wl-blue;
       }
