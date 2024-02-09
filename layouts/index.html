@@ -148,11 +148,11 @@
     {{/*  REFERENCES ########################################################## */}}
     <div class="uk-container uk-padding uk-position-relative">
         <h2>Referenzen</h2>
-        <div class="uk-grid-large uk-grid-match uk-child-width-1-6@s uk-child-width-1-3" uk-grid>
+        <div class="uk-grid-large uk-flex-middle uk-grid-match uk-child-width-1-6@s uk-child-width-1-3" uk-grid>
         {{ range $.Site.Data.references }}
             <div class="wl-reference-img">
                 <a href="mailto:{{ .email }}">
-                    <img src='{{ (resources.Get (print "img/" .logo)).RelPermalink }}'
+                    <img {{ if .scale }}style="transform: scale({{ .scale }})"{{ end }} src='{{ (resources.Get (print "img/" .logo)).RelPermalink }}'
                          alt="{{ .name }} Logo" title="{{ .name }}"/>
                 </a>
             </div>
