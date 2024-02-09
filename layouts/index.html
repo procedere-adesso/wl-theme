@@ -130,10 +130,10 @@
             }
             document.write(shuffle(staff).slice(0, 3).map((person) => {
                 return `
-                    <a href="${person.link}" class="uk-link-reset">
+                    <a href=".${person.link}" class="uk-link-reset">
                         <div class="wl-person-teaser">
                             <div class="">
-                                <img class="" src="${person.img}" alt="${person.name} icon" />
+                                <img class="" src=".${person.img}" alt="${person.name} icon" />
                             </div>
                             <h3>${person.name}</h3>
                             <div>${person.role}</div>
