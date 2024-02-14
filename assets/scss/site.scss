@@ -30,7 +30,6 @@
 
 @import "hugo:vars";
 
-
 $global-2xlarge-font-size: 1.875rem; // H1
 $global-xlarge-font-size: 1.625rem; // H2
 $global-large-font-size: 1.312rem; // H3
@@ -368,9 +367,9 @@ footer {
 }
 
 .wl-person {
-//   > div {
-//     border: 1px solid #ccc;
-//   }
+  //   > div {
+  //     border: 1px solid #ccc;
+  //   }
   display: flex;
   flex-wrap: wrap;
   .wl-person-nav {
@@ -405,7 +404,7 @@ footer {
     @media (max-width: $breakpoint-small) {
       margin-top: 2rem;
       margin-left: 0;
-        margin-right: 0;
+      margin-right: 0;
       order: 5;
       flex: 100%;
     }
@@ -462,5 +461,14 @@ footer {
 @media print {
   .wl-no-print {
     display: none;
+  }
+}
+
+.wl-procedere-affiliations {
+  &.uk-grid-large {
+    margin-left: -12%;
+  }
+  &.uk-grid-large > * {
+    padding-left: 12%;
   }
 }
