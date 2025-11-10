@@ -151,7 +151,6 @@
         <div class="uk-grid-large uk-flex-middle uk-grid-match uk-child-width-1-6@s uk-child-width-1-3" uk-grid>
         {{ range $.Site.Data.references }}
             <div class="wl-reference-img">
-                <a href="mailto:{{ .email }}">
                     <img {{ if .scale }}style="transform: scale({{ .scale }})"{{ end }} src='{{ (resources.Get (print "img/" .logo)).RelPermalink }}'
                          alt="{{ .name }} Logo" title="{{ .name }}"/>
                 </a>
