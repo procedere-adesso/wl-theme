@@ -102,7 +102,8 @@
         pers = {
             "name": "{{ .Title }}",
             "role": "{{ .Params.role }}",
-            "link": "{{ .RelPermalink }}"
+            "link": "{{ .RelPermalink }}",
+            "order": "{{ .Params.sort }}"
         };
         //   {{ with .Parent.Resources.Get (print .File.TranslationBaseName ".jpg") }}
         //      {{ $img := .Fill "746x852 webp" }}
@@ -128,7 +129,19 @@
 
                 return array;
             }
-            document.write(shuffle(staff).slice(0, 3).map((person) => {
+
+            let sortByOrder = (array) => {
+                return array.slice().sort((a, b) => {
+                    const orderA = parseInt(a.order) || 0;
+                    const orderB = parseInt(b.order) || 0;
+                    return orderA - orderB;
+                });
+            }
+
+            const sortedStaff = {{ if $.Site.Params.sortedStaff }}true{{ else }}false{{ end }};
+            const displayStaff = sortedStaff ? sortByOrder(staff) : shuffle(staff);
+
+            document.write(displayStaff.slice(0, 3).map((person) => {
                 return `
                     <a href=".${person.link}" class="uk-link-reset">
                         <div class="wl-person-teaser">
