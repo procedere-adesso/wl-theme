@@ -24,8 +24,11 @@
         let wlTeam = document.getElementById("wl-team");
         let members = Array.from(wlTeam.children);
         let oldState = members.map(el => el.getBoundingClientRect());
+        const sortedStaff = {{ if $.Site.Params.sortedStaff }}true{{ else }}false{{ end }};
+
         for (let i = wlTeam.children.length; i >= 0; i--) {
-            wlTeam.appendChild(wlTeam.children[Math.random() * i | 0]);
+            let j = sortedStaff ? i : (Math.random() * i | 0);
+            wlTeam.appendChild([j]);
         }
         let newState = members.map(el => el.getBoundingClientRect());
         members.forEach((elem, idx) => {
