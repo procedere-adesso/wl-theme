@@ -7,7 +7,7 @@
         {{ end }}
     </title>
     {{ $opts := dict
-        "transpiler" "libsass"
+        "transpiler" "dartsass"
         "vars" site.Params.styles
         "enableSourceMap" (not hugo.IsProduction) 
     }}
