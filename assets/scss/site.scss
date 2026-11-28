@@ -219,6 +219,7 @@ a.wl-arrow-link {
   position: relative;
   hyphens: auto;
   -webkit-hyphens: auto;
+  font-size: 1rem;
 
   @media (min-width: $breakpoint-small) {
     padding-top: 9rem;
@@ -242,7 +243,6 @@ a.wl-arrow-link {
       }
     }
   }
-  font-size: 1rem;
   > img {
     position: absolute;
     width: 100%;
