@@ -26,20 +26,23 @@
         let oldState = members.map(el => el.getBoundingClientRect());
         const sortedStaff = {{ if $.Site.Params.sortedStaff }}true{{ else }}false{{ end }};
 
-        for (let i = wlTeam.children.length; i >= 0; i--) {
-            let j = sortedStaff ? i : (Math.random() * i | 0);
-            wlTeam.appendChild([j]);
+        // sortedStaff keeps the server-side order; otherwise shuffle and
+        // animate each member from its old position to its new one.
+        if (!sortedStaff) {
+            for (let i = wlTeam.children.length; i >= 0; i--) {
+                wlTeam.appendChild(wlTeam.children[Math.random() * i | 0]);
+            }
+            let newState = members.map(el => el.getBoundingClientRect());
+            members.forEach((elem, idx) => {
+                const deltaX = oldState[idx].left - newState[idx].left;
+                const deltaY = oldState[idx].top - newState[idx].top;
+                elem.animate(
+                    [{transformOrigin: 'top left', transform: `translate(${deltaX}px, ${deltaY}px)`},
+                    {transformOrigin: 'top left', transform: 'none'}],
+                    {duration: 500, easing: 'ease', fill: 'both'}
+                );
+            })
         }
-        let newState = members.map(el => el.getBoundingClientRect());
-        members.forEach((elem, idx) => {
-            const deltaX = oldState[idx].left - newState[idx].left;
-            const deltaY = oldState[idx].top - newState[idx].top;
-            elem.animate(
-                [{transformOrigin: 'top left', transform: `translate(${deltaX}px, ${deltaY}px)`},
-                {transformOrigin: 'top left', transform: 'none'}],
-                {duration: 500, easing: 'ease', fill: 'both'}
-            );
-        })
 </script>
 </main>
 {{ end }}
